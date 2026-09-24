@@ -11,3 +11,8 @@ COMMIT;
 
 -- verificar la tabla.
 DESC PRODUCTOS_XML;
+
+-- antes de realizar una nueva prueba.
+DELETE FROM PRODUCTOS_XML;
+
+COMMIT;
