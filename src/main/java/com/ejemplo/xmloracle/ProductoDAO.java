@@ -52,4 +52,59 @@ public class ProductoDAO {
             );
         }
     }
+
+    public void listarProductos() {
+
+        String sql = """
+                SELECT ID,
+                    NOMBRE,
+                    CATEGORIA,
+                    PRECIO,
+                    STOCK
+                FROM PRODUCTOS_XML
+                ORDER BY ID
+                """;
+        try (
+                Connection conexion = ConexionOracle.conectar();
+                PreparedStatement ps = conexion.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()
+        ) {
+
+            System.out.println();
+            System.out.println("==============================================");
+            System.out.println("    PRODUCTOS ALMACENADOS EN ORACLE!    ");
+            System.out.println("==============================================");
+
+            while (rs.next()) {
+
+                System.out.println(
+                        "ID       : " + rs.getInt("ID")
+                );
+
+                System.out.println(
+                        "Nombre   : " + rs.getString("NOMBRE")
+                );
+
+                System.out.println(
+                        "Categoria: " + rs.getString("CATEGORIA")
+                );
+
+                System.out.println(
+                        "Precio   : " + rs.getDouble("PRECIO")
+                );
+
+                System.out.println(
+                        "Stock    : " + rs.getInt("STOCK")
+                );
+
+                System.out.println("----------------------------------------------");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error al consultar ORACLE: " + e.getMessage()
+            );
+        }
+    }
 }
