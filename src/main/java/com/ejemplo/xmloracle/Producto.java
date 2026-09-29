@@ -73,5 +73,5 @@ public class Producto {
                 ", precio=" + precio +
                 ", stock=" + stock +
                 '}';
-    }   
+    }
 }
